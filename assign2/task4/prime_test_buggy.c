@@ -32,7 +32,7 @@ _Bool is_prime(int n) {
 			break;
 		}
 	}
-	return !(n%i==0);
+	return n;
 }
 
 int get_valid_number(void) {
