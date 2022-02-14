@@ -13,13 +13,17 @@ int main()
     printf("Enter radius (in mm):\n");
     scanf("%f", &r);
 
-    a = PI * r * 2 / 2 / 25.4;
-    b = 2 * PI * r / 25.4;
+    r = r / 25.4;
+    a = PI * (r * r);
+    b = 2 * PI * r;
 
     if (r != 0) {
     printf("Circle's area is %3.2f (sq in).\n", a);
     printf("Its circumference is %3.2f (in).\n", b);
+    } else {
+      printf("Exit\n");
     }
+
    }
   
 }
