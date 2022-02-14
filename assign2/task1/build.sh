@@ -1,0 +1,1 @@
+gcc -std=c11 -Wall -lm intro.c -o intro
