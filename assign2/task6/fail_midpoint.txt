@@ -1,0 +1,3 @@
+For midpoint original to fail, i used 2147483648 and 2147483646. It failed because 2147483648 is 0b10000000000000000000000000000000 in binary and it causes an overflow since 2147483647 is the max integer limit. 
+
+I wasn't able to fail midpoint a posibly due to X being subtracted by Y which will lower the value but because it divides by 2 will stay at value thats in between the max and min.
