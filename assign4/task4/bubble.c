@@ -1,46 +1,51 @@
 /* Example: bubble sort strings in array */
-
 #include <stdio.h>  /* Need for standard I/O functions */
 #include <string.h> /* Need for strlen() */
 #include <stdlib.h>
+#include <stdbool.h>
 
-#define NUM 30 
+#define NUM 30
 #define LEN 1200
 
-int compare(char a[],char b[]){
-  
-  size_t lena=strlen(a)-1,lenb=strlen(b)-1;
-  if(lena-lenb>0){
-    for(int i=0;i<lenb;i++){
-      if(a[i]<b[i]) return -1;
-      else if(a[i]>b[i])return 1;
-    }
-    return 1;
-  }
-  else {
-    
-    for(int i=0;i<lenb;i++){
-      if(a[i]<b[i]) return -1;
-      else if(a[i]>b[i])return 1;
-    }
-    
-    return -1;
-  }
 
+bool compareStr(char a[], char b[]){
   
+  int a_len = strlen(a) - 1, b_len = strlen(b) - 1;
+  
+  if(a_len > b_len){
+    for(int i = 0; i < b_len; i++){
+      if(a[i] > b[i]){
+        
+        return true;
+        
+      } else {
+        
+        return false;
+        
+      }
+    }
+  } else {
+    for(int i = 0; i < a_len; i++){
+      if(a[i] > b[i]){
+        
+        return true;
+        
+      } else {
+        
+        return false;
+        
+      }
+    }
+  }
+  return false;
 }
 
-int main() {
-  
+int main()
+{
   char * Strings[NUM];
-  char tmp[NUM][LEN];
-  
+  char buffer[LEN];
+
   printf("Please enter %d strings, one per line:\n", NUM);
-  
-  for(int i=0;i<NUM;i++){
-    Strings[i]=fgets(tmp[i], LEN, stdin);
-    
-  }
 
   /* Write a for loop here to read NUM strings.
      Use fgets(), with LEN as an argument to ensure that an input line that is too
@@ -50,27 +55,22 @@ int main() {
 	 be LEN bytes long.  
 	 Note that the newline and NULL characters will be included in LEN.
   */
-
-  puts("\nHere are the strings in the order you entered:");
-  
-    for(int i=0;i<NUM;i++){
-     printf("%s",Strings[i]);
+  int stringsize = 0;
+  for(int i = 0; i < NUM; i++){
+    if(fgets(buffer, LEN, stdin) != NULL){
       
-  }
-  /* Write a for loop here to print all the strings. */
-
-  for(int i=0;i<NUM;i++){
-    for(int j=0;j<NUM-1-i;j++){
-      
-      if(compare(Strings[j],Strings[j+1])==1){
-        
-        char *p=Strings[j];
-        Strings[j]=Strings[j+1];
-        Strings[j+1]=p;
-        
-      }
+      stringsize = strlen(buffer);
+      Strings[i] = (char *)malloc(stringsize+1);
+      strcpy(Strings[i], buffer);
       
     }
+    
+  }
+
+  puts("\nHere are the strings in the order you entered:");
+
+  for(int i = 0; i < NUM; i++){
+    puts(Strings[i]);
   }
   /* Bubble sort */
   /* Write code here to bubble sort the strings in ascending alphabetical order
@@ -84,12 +84,40 @@ int main() {
       (iii) You are allowed to use strlen() to calculate string lengths.
   */
   /* Output sorted list */
-  puts("\nIn alphabetical order, the strings are:");     
-    for(int i=0;i<NUM;i++){
-     printf("%s",Strings[i]);
+
+  bool sorted = false;
+  int ceiling = NUM - 1;
+    
+  while(!sorted){
+    
+    sorted = true;
+    int i;
+    
+    for(i = 0; i < NUM - 1; i++){
+      if(compareStr(Strings[i], Strings[i+1]) == true){
+        
+        char * temp = Strings[i];
+        Strings[i] = Strings[i+1];
+        Strings[i+1] = temp;
+        sorted = false;
+        
+      }
+    }
+    ceiling--;
   }
+  
+
+    
+  puts("\nIn alphabetical order, the strings are:");  
+  
   /* Write a for loop here to print all the strings. Feel free to use puts/printf
      etc. for printing each string.
   */
-return 0;
+
+  for(int i = 0; i < NUM; i++){
+    
+    puts(Strings[i]);
+    
+  }
+
 }
