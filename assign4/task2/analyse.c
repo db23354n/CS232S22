@@ -15,14 +15,11 @@ int main()
   puts("Type some text (then ENTER):");
   
   /* Save typed characters in text[]: */
-    
-  for (i = 0; i < MAX; i++)
-  {
-    text[i] = getchar();
-    if (text[i] == '\n')
-      break;
+    if(fgets(text, MAX, stdin) != NULL){
+    length = strlen(text) - 1;
   }
-  length = i;
+
+
   
   /* Analyse contents of text[]: */
     
