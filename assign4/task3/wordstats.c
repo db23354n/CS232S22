@@ -16,11 +16,8 @@ int main () {
   }
   
   do {
-    
     if (buf[len] >= 65 && buf[len] <= 90) {
-      
       letter_frequency[buf[len] - 65] ++;
-      
     }
     else if (buf[len] >= 97 && buf[len] <= 122) {
       letter_frequency[buf[len]-97] ++;
