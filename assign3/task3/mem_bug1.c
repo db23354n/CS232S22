@@ -3,9 +3,14 @@
 #include <stdlib.h>
 
 int main(int argc, char * argv[]){
+  int * a = malloc(sizeof(int *));
+  *a = 10;  
+
+  printf("%d\n", *a);
   free(a);
 
-  a = malloc(sizeof(int *) * 3);
+  a = malloc(sizeof(int *)*3);
+  
   a[0] = 10;
   a[1] = 20;
   a[2] = 30;
