@@ -2,15 +2,15 @@
 #include <stdlib.h>
 #include <assert.h>
 unsigned * get_bits(unsigned x,
-					unsigned start,
-					unsigned end);
+                    unsigned start,
+                    unsigned end);
 /*
  * Tests that two arrays of size <size> are equal. Equal meaning that all the
  * elements in the arrays are equal.
  */
 int array_equals(unsigned *arr1,
-		unsigned *arr2,
-		unsigned size) {
+        unsigned *arr2,
+        unsigned size) {
 
    int i;
    for (i = 0; i < size; i++) {
@@ -27,7 +27,7 @@ int array_equals(unsigned *arr1,
  * is only 0 or 1.
  */
 void print_unsigned_array(unsigned *arr1,
-		        unsigned size) {
+                unsigned size) {
 
     printf("0b");
     unsigned i;
@@ -36,24 +36,24 @@ void print_unsigned_array(unsigned *arr1,
     }
 }
 
-void test_get_bits(	unsigned x,
-                  	unsigned s,
-		  			unsigned e,
-                  	unsigned * expected) {
+void test_get_bits(    unsigned x,
+                      unsigned s,
+                      unsigned e,
+                      unsigned * expected) {
     unsigned* a = get_bits(x, s, e);
     if(!array_equals(a, expected, e - s + 1)) {
         printf("get_bits(0x%08x,%u,%u): ",x,s,e);
-		print_unsigned_array(a, e - s + 1);
-		printf(", expected ");
-		print_unsigned_array(expected, e - s + 1);
-		printf("\n");
-		assert(0);
+        print_unsigned_array(a, e - s + 1);
+        printf(", expected ");
+        print_unsigned_array(expected, e - s + 1);
+        printf("\n");
+        assert(0);
     } else {
         printf("get_bits(0x%08x,%u,%u): ",x,s,e);
-		print_unsigned_array(a, e - s + 1);
-		printf(", correct\n");
+        print_unsigned_array(a, e - s + 1);
+        printf(", correct\n");
     }
-	//do not forget to free memory
+    //do not forget to free memory
     free(a);
 }
 
